@@ -1,0 +1,100 @@
+/* ── Betsy's kitchen — phone-first control room ───────────────────────── */
+
+.admin .wrap { max-width: 720px; }
+
+/* password gate */
+.gate { max-width: 360px; margin: 12vh auto; text-align: center; }
+.gate .seal { margin: 0 auto 18px; }
+.gate input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--ink); border-radius: 10px;
+  background: var(--card); font-size: 1rem; text-align: center; margin: 14px 0; color: var(--ink); }
+.gate input:focus { outline: none; border-color: var(--accent); }
+
+/* the big glance — the one number she sees first */
+.glance {
+  background: var(--ink); color: var(--cream); border-radius: 18px; padding: 22px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 18px 0 6px;
+}
+.glance .big { font-family: var(--display); }
+.glance .big .num { font-size: 3rem; font-weight: 700; line-height: 1; }
+.glance .big .lbl { font-size: 0.9rem; opacity: 0.8; }
+.glance .side { text-align: right; font-size: 0.82rem; opacity: 0.85; }
+.glance .side b { color: #f0c9a8; }
+
+/* master switch */
+.master {
+  display: flex; align-items: center; justify-content: space-between;
+  border: 1.5px solid var(--ink-faint); border-radius: 14px; padding: 14px 18px; margin: 14px 0;
+  background: var(--card);
+}
+.master .lbl b { font-family: var(--display); font-size: 1.15rem; }
+.master .lbl div { font-size: 0.78rem; color: var(--ink-soft); }
+
+/* toggle switch */
+.switch { position: relative; width: 54px; height: 30px; flex: none; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .track { position: absolute; inset: 0; background: var(--ink-faint); border-radius: 999px; transition: .2s; cursor: pointer; }
+.switch .track::before { content: ""; position: absolute; width: 24px; height: 24px; left: 3px; top: 3px; background: var(--cream); border-radius: 50%; transition: .2s; }
+.switch input:checked + .track { background: var(--accent); }
+.switch input:checked + .track::before { transform: translateX(24px); }
+
+/* admin cards & section titles */
+.panel { background: var(--card); border: 1.5px solid var(--ink-faint); border-radius: 16px; padding: 18px; margin: 14px 0; }
+.panel > h2 { font-family: var(--display); font-size: 1.4rem; margin-bottom: 2px; }
+.panel > .hint { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 14px; }
+
+/* oven day rows in admin */
+.adm-day { display: grid; grid-template-columns: 120px 1fr 84px; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--ink-faint); }
+.adm-day:last-child { border-bottom: none; }
+.adm-day .d-when b { font-family: var(--display); font-size: 1.05rem; }
+.adm-day .d-when span { display: block; font-size: 0.72rem; color: var(--ink-soft); }
+.adm-day.off { opacity: 0.5; }
+.adm-day .cap { display: flex; align-items: center; gap: 10px; }
+.adm-day .cap input[type=range] { flex: 1; accent-color: var(--accent); }
+.adm-day .cap .capnum { font-family: var(--display); font-weight: 700; font-size: 1.3rem; min-width: 22px; text-align: center; }
+.adm-day .d-toggle { justify-self: end; }
+
+/* shelf editor */
+.shelf-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--ink-faint); }
+.shelf-row:last-child { border-bottom: none; }
+.shelf-row .pinfo { display: flex; align-items: center; gap: 10px; }
+.shelf-row .pinfo .mini { width: 34px; height: 34px; color: var(--ink); }
+.stepper { display: flex; align-items: center; gap: 6px; }
+.stepper button { width: 30px; height: 30px; border-radius: 8px; border: 1.5px solid var(--ink); background: transparent; font-size: 1.1rem; cursor: pointer; color: var(--ink); }
+.stepper button:hover { background: var(--ink); color: var(--cream); }
+.stepper .v { font-family: var(--display); font-weight: 700; font-size: 1.3rem; min-width: 26px; text-align: center; }
+
+/* product rows */
+.prod-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--ink-faint); gap: 10px; }
+.prod-row:last-child { border-bottom: none; }
+.prod-row .pinfo { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.prod-row .pinfo .mini { width: 34px; height: 34px; flex: none; color: var(--ink); }
+.prod-row .pinfo .nm { font-weight: 600; }
+.prod-row .pinfo .bl { font-size: 0.74rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 30ch; }
+.tag { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; border: 1px solid var(--accent); color: var(--accent); border-radius: 6px; padding: 1px 6px; }
+
+/* orders inbox */
+.order { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--ink-faint); }
+.order:last-child { border-bottom: none; }
+.order .oinfo .who { font-weight: 600; }
+.order .oinfo .what { font-size: 0.8rem; color: var(--ink-soft); }
+.order .oinfo .flake { color: var(--accent-deep); font-size: 0.72rem; }
+.pill { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 999px; padding: 2px 9px; border: 1px solid var(--ink-faint); color: var(--ink-soft); }
+.pill.paid { border-color: #5a7d4f; color: #466b3c; }
+.pill.shelf { border-color: var(--ink); color: var(--ink); }
+.pill.reserved { border-color: var(--accent); color: var(--accent-deep); }
+.pill.done { border-color: var(--ink-faint); color: var(--ink-faint); }
+.order .acts { display: flex; gap: 6px; flex: none; }
+
+.tabbar { display: flex; gap: 8px; margin: 10px 0 4px; flex-wrap: wrap; }
+.tabbar button { border: 1.5px solid var(--ink-faint); background: transparent; color: var(--ink-soft);
+  border-radius: 999px; padding: 7px 16px; font-family: var(--body); font-weight: 600; font-size: 0.84rem; cursor: pointer; }
+.tabbar button.on { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.empty { text-align: center; color: var(--ink-soft); padding: 18px 0; font-style: italic; }
+.danger-link { color: var(--ink-faint); font-size: 0.76rem; background: none; border: none; cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .adm-day { grid-template-columns: 1fr auto; grid-template-areas: "when toggle" "cap cap"; row-gap: 10px; }
+  .adm-day .d-when { grid-area: when; } .adm-day .d-toggle { grid-area: toggle; } .adm-day .cap { grid-area: cap; }
+  .prod-row .pinfo .bl { max-width: 18ch; }
+}

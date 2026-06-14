@@ -1,0 +1,236 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Baked by Betsy — one ink, warm parchment, line-drawn bread.
+   The whole palette is two browns + cream, with a single terracotta accent
+   reserved only for "act now" moments (grab / reserve / the stamp).
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --cream:      #f4ecd8;
+  --cream-deep: #ede2c8;
+  --card:       #faf4e6;
+  --ink:        #4a3826;   /* primary brown — text & lines            */
+  --ink-soft:   #7a6549;   /* secondary ink — captions, faded loaves   */
+  --ink-faint:  #c9b896;   /* hairlines, empty slots, sold-out ghosts  */
+  --accent:     #b5542d;   /* terracotta — act now, only here          */
+  --accent-deep:#933f1f;
+  --shadow:     rgba(74, 56, 38, 0.14);
+
+  --script: "Pinyon Script", cursive;
+  --display: "Cormorant Garamond", Georgia, serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--body);
+  background-color: var(--cream);
+  /* faint paper grain, kept to a whisper so text stays crisp */
+  background-image:
+    radial-gradient(rgba(122, 101, 73, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(122, 101, 73, 0.04) 1px, transparent 1px);
+  background-size: 22px 22px, 32px 32px;
+  background-position: 0 0, 11px 16px;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.wrap { max-width: 940px; margin: 0 auto; padding: 0 20px; }
+
+/* ── type ─────────────────────────────────────────────────────────────── */
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; }
+.script { font-family: var(--script); font-weight: 400; }
+.eyebrow {
+  font-family: var(--body); text-transform: uppercase; letter-spacing: 0.22em;
+  font-size: 0.7rem; color: var(--ink-soft); font-weight: 600;
+}
+.muted { color: var(--ink-soft); }
+
+/* ── the seal (re-lettered from one config line) ──────────────────────── */
+.seal {
+  width: var(--seal, 150px); height: var(--seal, 150px);
+  border: 2px solid var(--ink); border-radius: 50%;
+  display: grid; place-items: center; position: relative; color: var(--ink);
+  background: radial-gradient(circle at 50% 40%, var(--card), var(--cream-deep));
+}
+.seal::before {
+  content: ""; position: absolute; inset: 7px; border: 1px solid var(--ink);
+  border-radius: 50%; opacity: 0.55;
+}
+.seal .seal-inner { text-align: center; width: 78%; }
+.seal .seal-top {
+  font-family: var(--display); font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; font-size: calc(var(--seal, 150px) * 0.12); line-height: 1;
+}
+.seal .seal-loaf { width: 46%; margin: 4px auto 2px; color: var(--ink); }
+.seal .seal-bot { font-family: var(--script); font-size: calc(var(--seal,150px) * 0.16); margin-top: -2px; }
+.seal .seal-wheat { position: absolute; bottom: 18%; width: 12%; color: var(--ink); opacity: 0.8; }
+.seal .seal-wheat.l { left: 16%; transform: rotate(-18deg); }
+.seal .seal-wheat.r { right: 16%; transform: rotate(18deg) scaleX(-1); }
+
+/* ── top bar ──────────────────────────────────────────────────────────── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-bottom: 1px solid var(--ink-faint);
+}
+.topbar .brand { font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.04em; }
+.topbar .brand b { font-weight: 700; }
+.topbar a { color: var(--ink-soft); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.04em; }
+.topbar a:hover { color: var(--accent); }
+
+/* ── hero ─────────────────────────────────────────────────────────────── */
+.hero { text-align: center; padding: 46px 0 30px; }
+.hero .hero-art { width: 132px; margin: 0 auto 6px; color: var(--ink-soft); }
+.hero h1 { font-size: clamp(2.4rem, 7vw, 3.6rem); line-height: 1.04; }
+.hero .script-name { font-family: var(--script); font-size: clamp(2.8rem, 9vw, 4.4rem); color: var(--ink); display: block; margin-top: -6px; }
+.hero p { max-width: 30rem; margin: 12px auto 0; color: var(--ink-soft); }
+
+/* the closed-banner when Betsy turns the oven off */
+.closed-banner {
+  text-align: center; background: var(--cream-deep); border: 1px dashed var(--accent);
+  color: var(--accent-deep); border-radius: 12px; padding: 14px 18px; margin: 8px 0 0;
+  font-family: var(--display); font-size: 1.2rem;
+}
+
+/* ── section headers w/ wheat divider ─────────────────────────────────── */
+.section { padding: 34px 0 8px; }
+.section-head { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+.section-head h2 { font-size: 1.9rem; }
+.section-head .sub { color: var(--ink-soft); font-size: 0.9rem; }
+.wheat-rule { display: flex; align-items: center; gap: 6px; color: var(--ink-faint); margin: 10px 0 22px; }
+.wheat-rule .line { flex: 1; height: 1px; background: var(--ink-faint); }
+.wheat-rule svg { width: 16px; height: 22px; }
+
+/* ── THE SHELF ────────────────────────────────────────────────────────── */
+.shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.loaf-tile {
+  background: var(--card); border: 1.5px solid var(--ink); border-radius: 16px;
+  padding: 16px 14px 14px; text-align: center; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; transition: transform .15s ease, box-shadow .15s ease;
+}
+.loaf-tile:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--shadow); }
+.loaf-tile .art { width: 76px; height: 76px; margin: 2px auto 8px; color: var(--ink); }
+.loaf-tile h3 { font-size: 1.15rem; line-height: 1.1; }
+.loaf-tile .price { font-family: var(--display); font-weight: 700; color: var(--ink); margin: 2px 0; }
+.loaf-tile .blurb { font-size: 0.78rem; color: var(--ink-soft); flex: 1; margin: 4px 0 10px; }
+.loaf-tile .count { font-size: 0.74rem; letter-spacing: 0.04em; color: var(--ink-soft); margin-bottom: 10px; }
+.loaf-tile .count b { color: var(--accent-deep); }
+
+/* sold out: ghost the loaf, leave a gap on the shelf */
+.loaf-tile.sold { opacity: 0.62; }
+.loaf-tile.sold .art { color: var(--ink-faint); }
+.loaf-tile.sold .blurb, .loaf-tile.sold .price { color: var(--ink-faint); }
+
+/* the special gets a quiet ribbon */
+.loaf-tile.special { border-color: var(--accent); }
+.loaf-tile .ribbon {
+  position: absolute; top: 12px; right: -30px; transform: rotate(38deg);
+  background: var(--accent); color: var(--cream); font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 34px; font-weight: 700;
+}
+
+/* ── buttons ──────────────────────────────────────────────────────────── */
+.btn {
+  font-family: var(--body); font-weight: 600; font-size: 0.86rem; letter-spacing: 0.03em;
+  border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; color: var(--ink);
+  padding: 9px 18px; cursor: pointer; transition: all .14s ease;
+}
+.btn:hover { background: var(--ink); color: var(--cream); }
+.btn.accent { border-color: var(--accent); color: var(--cream); background: var(--accent); }
+.btn.accent:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn.ghost { border-color: var(--ink-faint); color: var(--ink-soft); }
+.btn.sm { padding: 5px 12px; font-size: 0.78rem; }
+
+/* ── THE OVEN ─────────────────────────────────────────────────────────── */
+.oven {
+  background: linear-gradient(180deg, var(--card), var(--cream-deep));
+  border: 2px solid var(--ink); border-radius: 18px; padding: 6px; position: relative;
+  box-shadow: inset 0 -30px 50px -30px rgba(181, 84, 45, 0.35); /* warmth at the base */
+}
+.oven-days { display: grid; gap: 0; }
+.rack {
+  display: grid; grid-template-columns: 130px 1fr auto; align-items: center; gap: 14px;
+  padding: 16px 16px; border-bottom: 1px dashed var(--ink-faint);
+}
+.rack:last-child { border-bottom: none; }
+.rack .when .day { font-family: var(--display); font-weight: 700; font-size: 1.15rem; line-height: 1; }
+.rack .when .meta { font-size: 0.72rem; color: var(--ink-soft); margin-top: 3px; }
+.rack .when .closed-tag { color: var(--accent-deep); font-weight: 600; }
+
+/* the slots — little drawn loaves that appear as the oven fills */
+.slots { display: flex; flex-wrap: wrap; gap: 7px; }
+.slot {
+  width: 30px; height: 30px; border-radius: 7px; display: grid; place-items: center;
+  border: 1.5px dashed var(--ink-faint); color: var(--ink-faint);
+}
+.slot.filled { border-style: solid; border-color: var(--ink); color: var(--ink); background: rgba(74,56,38,0.05); }
+.slot svg { width: 20px; height: 20px; }
+.slot.pop { animation: pop .42s cubic-bezier(.3,1.4,.5,1) both; }
+@keyframes pop { 0% { transform: scale(0) rotate(-12deg); } 100% { transform: scale(1) rotate(0); } }
+
+.rack .left-note { font-size: 0.78rem; color: var(--ink-soft); text-align: right; }
+.rack .left-note b { font-family: var(--display); font-size: 1.5rem; color: var(--accent-deep); display: block; line-height: 1; }
+.rack.full .left-note b { color: var(--ink-soft); }
+
+/* ── about ────────────────────────────────────────────────────────────── */
+.about { display: grid; grid-template-columns: 150px 1fr; gap: 26px; align-items: center; }
+.about .portrait { color: var(--ink-soft); }
+.about p { color: var(--ink-soft); }
+
+/* ── footer ───────────────────────────────────────────────────────────── */
+footer { text-align: center; padding: 40px 0 60px; color: var(--ink-soft); font-size: 0.85rem; }
+footer a { color: var(--ink-soft); }
+footer .social { display: flex; gap: 18px; justify-content: center; margin: 12px 0; }
+
+/* ── modal + the STAMP ────────────────────────────────────────────────── */
+.modal-back {
+  position: fixed; inset: 0; background: rgba(40, 28, 16, 0.45); display: grid; place-items: center;
+  z-index: 50; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .2s ease;
+}
+.modal-back.show { opacity: 1; pointer-events: auto; }
+.modal {
+  background: var(--card); border: 2px solid var(--ink); border-radius: 18px;
+  padding: 26px; width: 100%; max-width: 380px; position: relative; transform: translateY(8px);
+  transition: transform .2s ease;
+}
+.modal-back.show .modal { transform: translateY(0); }
+.modal h3 { font-size: 1.5rem; margin-bottom: 2px; }
+.modal label { display: block; font-size: 0.74rem; letter-spacing: 0.04em; color: var(--ink-soft); margin: 12px 0 4px; text-transform: uppercase; }
+.modal input, .modal select {
+  width: 100%; padding: 10px 12px; border: 1.5px solid var(--ink-faint); border-radius: 10px;
+  background: var(--cream); font-family: var(--body); font-size: 0.95rem; color: var(--ink);
+}
+.modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); }
+.modal .row { display: flex; gap: 10px; margin-top: 20px; }
+.modal .row .btn { flex: 1; }
+.warn { background: #f6e7d6; border: 1px solid var(--accent); color: var(--accent-deep); border-radius: 8px; padding: 8px 10px; font-size: 0.78rem; margin-top: 12px; }
+
+/* the vintage stamp that thunks down on success */
+.stamp {
+  position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none;
+}
+.stamp .mark {
+  border: 4px double var(--accent); color: var(--accent); border-radius: 50%;
+  width: 150px; height: 150px; display: grid; place-items: center; text-align: center;
+  font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 1.1rem; transform: scale(2.4) rotate(-16deg); opacity: 0;
+  background: rgba(244, 236, 216, 0.35);
+}
+.stamp.go .mark { animation: thunk .5s cubic-bezier(.2,1.3,.3,1) forwards; }
+@keyframes thunk {
+  0% { transform: scale(2.4) rotate(-16deg); opacity: 0; }
+  60% { transform: scale(0.92) rotate(-12deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-12deg); opacity: 1; }
+}
+
+/* ── responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .rack { grid-template-columns: 1fr; gap: 8px; }
+  .rack .left-note { text-align: left; }
+  .rack .left-note b { display: inline; font-size: 1.1rem; }
+  .about { grid-template-columns: 1fr; text-align: center; }
+  .about .portrait { width: 120px; margin: 0 auto; }
+}
