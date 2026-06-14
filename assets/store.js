@@ -98,22 +98,34 @@
 
   const slotsLeft = (bd) => Math.max(0, bd.capacity - reservationsFor(bd.id).length);
 
+  // The cutoff moment for a bake day — promising closes cutoffDays before it,
+  // giving Betsy time to feed the starter and let it rest in the fridge.
+  function cutoffFor(bd) {
+    const c = new Date(+parse(bd.date) - CONFIG.cutoffDays * DAY);
+    c.setHours(CONFIG.cutoffHour, 0, 0, 0);
+    return c;
+  }
+
   // A bake day is "claimable" when the store is on, the day is open, it isn't
-  // full, and we're inside its promising window (opens early, closes the night before).
+  // full, and we're inside its promising window (opens early, closes before prep).
   function windowState(bd) {
     const now = new Date();
-    const dayStart = parse(bd.date);
-    const opensAt = new Date(+dayStart - CONFIG.openLeadDays * DAY);
-    const cutoff = new Date(+dayStart - DAY); cutoff.setHours(CONFIG.cutoffHour, 0, 0, 0);
+    const opensAt = new Date(+parse(bd.date) - CONFIG.openLeadDays * DAY);
     if (now < opensAt) return "soon";        // not open for promising yet
-    if (now > cutoff) return "closed";       // past the night-before cutoff
+    if (now > cutoffFor(bd)) return "closed"; // past the prep-time cutoff
     return "open";
   }
 
   function visibleBakeDays() {
     return state.bakeDays
       .filter((bd) => bd.open && state.storeOpen)
-      .map((bd) => ({ ...bd, left: slotsLeft(bd), filled: reservationsFor(bd.id).length, phase: windowState(bd) }))
+      .map((bd) => ({
+        ...bd,
+        left: slotsLeft(bd),
+        filled: reservationsFor(bd.id).length,
+        phase: windowState(bd),
+        cutoff: iso(cutoffFor(bd)),
+      }))
       .filter((bd) => bd.phase !== "soon");  // only show what people can act on
   }
 

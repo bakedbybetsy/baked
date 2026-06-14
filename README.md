@@ -1,4 +1,4 @@
-# Baked by Betsy
+# Bread by Betsy
 
 A small, warm storefront for a one-person sourdough business — built around a
 single idea:

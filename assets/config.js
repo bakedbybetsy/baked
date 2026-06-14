@@ -6,7 +6,7 @@
 
 window.CONFIG = {
   // The word inside the seal. Change this one line to rename the business.
-  brandName: "Baked by Betsy",
+  brandName: "Bread by Betsy",
   brandShort: "BbyB",
   tagline: "Small-batch sourdough, made by hand in limited numbers.",
 
@@ -21,10 +21,14 @@ window.CONFIG = {
     { weekday: 6, label: "Saturday", capacity: 6 },  // Sat bake
   ],
 
-  // Promising opens this many days before a bake day, and closes the night
-  // before. The front edge lets people find it; the back edge protects her morning.
-  openLeadDays: 4,
-  cutoffHour: 20, // promising for a day closes at 8pm the night before
+  // The promising window for each bake day.
+  //   openLeadDays — how far ahead a bake appears so people can find & reserve.
+  //   cutoffDays   — promising closes this many days BEFORE the bake, so Betsy
+  //                  has time to feed the starter and let it rest in the fridge.
+  //                  (Want bread sooner than this? Grab from the shelf instead.)
+  openLeadDays: 12,
+  cutoffDays: 2,
+  cutoffHour: 18, // closes at 6pm on the cutoff day
 
   // The five-or-six regulars + one monthly special.
   // `icon` picks a line drawing from art.js. `shelf` seeds today's shelf count.

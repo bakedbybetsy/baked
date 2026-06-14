@@ -105,7 +105,7 @@ function rack(bd) {
   <div class="rack ${full ? "full" : ""}" data-day="${bd.id}">
     <div class="when">
       <div class="day">${Store.weekdayName(new Date(bd.date + "T00:00:00").getDay())}</div>
-      <div class="meta">${Store.fmtDay(bd.date)} · order by the night before</div>
+      <div class="meta">${Store.fmtDay(bd.date)} · order by ${Store.weekdayName(new Date(bd.cutoff + "T00:00:00").getDay())}</div>
     </div>
     <div class="slots">${slots}</div>
     <div class="left-note">
