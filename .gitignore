@@ -4,3 +4,4 @@ shot*.js
 shot-*.png
 *.log
 .DS_Store
+package.json
